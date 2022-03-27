@@ -1,3 +1,4 @@
+import yaml
 from PIL import Image, ImageDraw, ImageFont
 
 
@@ -51,7 +52,8 @@ def draw_text_psd_style(draw, xy, text, font, tracking=0, leading=None, **kwargs
         x = xy[0]
 
 
-def draw_date(month: str, day: str):
+def draw_date(date: str):
+    month, day = date.split('/')
     draw_text(240, 780, month)
     draw_text(380, 820, day)
 
@@ -136,28 +138,26 @@ if __name__ == '__main__':
     draw = ImageDraw.Draw(img)
     black = (0, 0, 0)
 
-    draw_date('12', '31')
-    draw_name('Alice Bob')
-    draw_card_number('1234567')
+    with open('request.yaml') as f:
+        request = yaml.load(f, yaml.Loader)
 
-    draw_branch()
-    draw_branch('八柱')
+    draw_date(request.get('date'))
+    draw_name(request.get('name'))
+    draw_card_number(request.get('card_number'))
 
-    draw_communication('phone', '999-1234-5678')
-    draw_communication('email')
-    draw_communication('none')
+    draw_branch(request.get('branch'))
 
-    draw_title('赤目姫の潮解')
-    draw_author('森博嗣')
-    draw_publisher('講談社')
-    draw_release_date('2222-02-02')
-    draw_isbn('0123456789123')
-    draw_price('12345')
+    communication = request.get('communication')
+    draw_communication(communication, request.get('phone_number'))
 
-    draw_other('その他')
-    draw_material_type('book')
-    draw_material_type('magazine')
-    draw_material_type('cd')
-    draw_material_type('kamishibai')
+    draw_title(request.get('title'))
+    draw_author(request.get('author'))
+    draw_publisher(request.get('publisher'))
+    draw_release_date(request.get('release_date'))
+    draw_isbn(request.get('isbn'))
+    draw_price(request.get('price'))
+
+    draw_other(request.get('other'))
+    draw_material_type(request.get('material_type'))
 
     img.show()
