@@ -3,7 +3,7 @@ date: '12/31'
 name: 'Alice Bob'
 card_number: '1234567'
 
-branch: '八柱'
+branch: '八柱' # empty or remove to select '予約申込館'
 
 communication: 'phone' # or one of ('email', 'none')
 phone_number: '999-1234-5678'

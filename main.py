@@ -62,11 +62,11 @@ def draw_name(name: str):
     draw_text(520, 800, name)
 
 
-def draw_branch(branch: str = None):
-    if branch is None:
-        draw_text(1160, 780, '○', size=80)
-    else:
+def draw_branch(branch: str):
+    if branch:
         draw_text(1380, 800, branch, size=50)
+    else:
+        draw_text(1160, 780, '○', size=80)
 
 
 def draw_card_number(number):
