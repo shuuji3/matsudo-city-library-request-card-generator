@@ -1,3 +1,5 @@
+import datetime
+
 import yaml
 from PIL import Image, ImageDraw, ImageFont
 
@@ -52,10 +54,9 @@ def draw_text_psd_style(draw, xy, text, font, tracking=0, leading=None, **kwargs
         x = xy[0]
 
 
-def draw_date(date: str):
-    month, day = date.split('/')
-    draw_text(240, 780, month)
-    draw_text(380, 820, day)
+def draw_date(date: datetime.datetime):
+    draw_text(240, 780, str(date.month))
+    draw_text(380, 820, str(date.day))
 
 
 def draw_name(name: str):
