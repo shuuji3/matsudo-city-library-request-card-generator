@@ -6,7 +6,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 def draw_text(x, y, text, size=60):
     font = get_font(size)
-    draw.text((x, y), text, black, font=font)
+    draw.text((x, y), text, fill=black, font=font)
 
 
 def get_font(size):
