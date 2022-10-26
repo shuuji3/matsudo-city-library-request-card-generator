@@ -5,6 +5,13 @@
 tasks:
   - before: |
       brew install pdftoipe
+
+      # install google noto font for Japanese
+      brew install --HEAD linuxbrew/fonts/font-noto-sans-jp
+      ln -sfn /home/linuxbrew/.linuxbrew/share/fonts ~/.local/share/fonts
+      echo 'export XDG_DATA_DIRS=$HOME/.local/share:$XDG_DATA_DIRS' >> ~/.profile 
+      fc-cache -fv
+
       poetry install
   - init: make
 
