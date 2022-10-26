@@ -3,7 +3,9 @@
 # and commit this file to your remote git repository to share the goodness with others.
 
 tasks:
-  - before: brew install pdftoipe
+  - before: |
+      brew install pdftoipe
+      poetry install
   - init: make
 
 
