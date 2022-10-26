@@ -5,7 +5,7 @@ description = "📚 Generate a book request card image of the Matsudo City libra
 authors = ["TAKAHASHI Shuuji <shuuji3@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.8"
 Pillow = "9.0.1"
 PyYAML = "6.0"
 
