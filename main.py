@@ -10,7 +10,10 @@ def draw_text(x, y, text, size=60):
 
 
 def get_font(size):
-    return ImageFont.truetype('ヒラギノ丸ゴ ProN W4.ttc', size)
+    try:
+        return ImageFont.truetype('ヒラギノ丸ゴ ProN W4.ttc', size)
+    except OSError:
+        return ImageFont.truetype('NotoSansJP[wght].ttf', size)
 
 
 def draw_text_psd_style(draw, xy, text, font, tracking=0, leading=None, **kwargs):
