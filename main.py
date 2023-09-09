@@ -1,7 +1,12 @@
 import datetime
+from io import BytesIO
 
 import yaml
 from PIL import Image, ImageDraw, ImageFont
+from fastapi import FastAPI
+from fastapi.responses import Response
+
+app = FastAPI()
 
 
 def draw_text(x, y, text, size=60):
@@ -137,9 +142,12 @@ def draw_material_type(material_type: str):
         draw_text(1200, 1855, '✓', 80)
 
 
-if __name__ == '__main__':
-    img = Image.open('request-card.jpg')
-    draw = ImageDraw.Draw(img)
+@app.get('/')
+async def generate_request_card() -> Response:
+    image = Image.open('request-card.jpg')
+    global draw
+    draw = ImageDraw.Draw(image)
+    global black
     black = (0, 0, 0)
 
     with open('request.yaml') as f:
@@ -164,4 +172,7 @@ if __name__ == '__main__':
     draw_other(request.get('other'))
     draw_material_type(request.get('material_type'))
 
-    img.show()
+    f = BytesIO()
+    image.save(f, 'jpeg')
+    image_bytes = f.getvalue()
+    return Response(content=image_bytes, media_type="image/jpeg")
