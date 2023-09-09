@@ -8,6 +8,8 @@ authors = ["TAKAHASHI Shuuji <shuuji3@gmail.com>"]
 python = "^3.8"
 Pillow = "9.0.1"
 PyYAML = "6.0"
+fastapi = "^0.103.1"
+uvicorn = {extras = ["standard"], version = "^0.23.2"}
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.3"
