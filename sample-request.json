@@ -1,0 +1,20 @@
+{
+    "date": "2020-12-31",
+    "name": "Alice Bob",
+    "card_number": "1234567",
+
+    "branch": "八柱",
+
+    "communication": "phone",
+    "phone_number": "999-1234-5678",
+
+    "title": "赤目姫の潮解",
+    "author": "森博嗣!!!",
+    "publisher": "講談社!",
+    "release_date": "2222-02-02",
+    "isbn": "0123456789123",
+    "price": "12345",
+
+    "other": "その他",
+    "material_type": "book"
+}
