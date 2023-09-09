@@ -5,6 +5,29 @@ import yaml
 from PIL import Image, ImageDraw, ImageFont
 from fastapi import FastAPI
 from fastapi.responses import Response
+from pydantic import BaseModel
+
+
+class Book(BaseModel):
+    date: str
+    name: str
+    card_number: str
+
+    branch: str | None
+
+    communication: str = 'email'
+    phone_number: str
+
+    title: str
+    author: str
+    publisher: str
+    release_date: str
+    isbn: str
+    price: str
+
+    other: str | None
+    material_type: str = 'book'
+
 
 app = FastAPI()
 
