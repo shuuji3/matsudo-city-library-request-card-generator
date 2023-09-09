@@ -165,35 +165,32 @@ def draw_material_type(material_type: str):
         draw_text(1200, 1855, '✓', 80)
 
 
-@app.get('/')
-async def generate_request_card() -> Response:
+@app.post('/')
+async def generate_request_card(book: Book) -> Response:
     image = Image.open('request-card.jpg')
     global draw
     draw = ImageDraw.Draw(image)
     global black
     black = (0, 0, 0)
 
-    with open('request.yaml') as f:
-        request = yaml.load(f, yaml.Loader)
+    draw_date(datetime.date.fromisoformat(book.date))
+    draw_name(book.name)
+    draw_card_number(book.card_number)
 
-    draw_date(request.get('date'))
-    draw_name(request.get('name'))
-    draw_card_number(request.get('card_number'))
+    draw_branch(book.branch)
 
-    draw_branch(request.get('branch'))
+    communication = book.communication
+    draw_communication(communication, book.phone_number)
 
-    communication = request.get('communication')
-    draw_communication(communication, request.get('phone_number'))
+    draw_title(book.title)
+    draw_author(book.author)
+    draw_publisher(book.publisher)
+    draw_release_date(book.release_date)
+    draw_isbn(book.isbn)
+    draw_price(book.price)
 
-    draw_title(request.get('title'))
-    draw_author(request.get('author'))
-    draw_publisher(request.get('publisher'))
-    draw_release_date(request.get('release_date'))
-    draw_isbn(request.get('isbn'))
-    draw_price(request.get('price'))
-
-    draw_other(request.get('other'))
-    draw_material_type(request.get('material_type'))
+    draw_other(book.other)
+    draw_material_type(book.material_type)
 
     f = BytesIO()
     image.save(f, 'jpeg')
